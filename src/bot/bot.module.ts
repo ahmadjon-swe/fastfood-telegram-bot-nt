@@ -16,8 +16,8 @@ import { ProductService } from './services/product.service';
 import { CartService } from './services/cart.service';
 import { OrderService } from './services/order.service';
 import { ConfigModule, ConfigService } from '@nestjs/config';
+import { Topup, TopupSchema } from './schemas/topup.schema';
 
-console.log('RAW TOKEN:', JSON.stringify(process.env.TELEGRAM_BOT_TOKEN))
 @Module({
   imports: [
     // Register Telegraf with the bot token
@@ -42,6 +42,7 @@ console.log('RAW TOKEN:', JSON.stringify(process.env.TELEGRAM_BOT_TOKEN))
       { name: Product.name, schema: ProductSchema },
       { name: Cart.name, schema: CartSchema },
       { name: Order.name, schema: OrderSchema },
+      { name: Topup.name, schema: TopupSchema },
     ]),
   ],
   providers: [
@@ -52,6 +53,6 @@ console.log('RAW TOKEN:', JSON.stringify(process.env.TELEGRAM_BOT_TOKEN))
     OrderService,
     BotService,
   ],
-  exports: [UserService, ProductService, CartService, OrderService],
+  exports: [BotService, UserService, ProductService, CartService, OrderService],
 })
 export class BotModule {}

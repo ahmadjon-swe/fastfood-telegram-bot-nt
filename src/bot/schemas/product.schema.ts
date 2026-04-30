@@ -3,12 +3,6 @@ import { Document } from 'mongoose';
 
 export type ProductDocument = Product & Document;
 
-export enum ProductCategory {
-  FOOD = 'food',
-  DRINKS = 'drinks',
-  DESSERTS = 'desserts',
-}
-
 @Schema({ timestamps: true })
 export class Product {
   @Prop({ required: true })
@@ -23,14 +17,14 @@ export class Product {
   @Prop()
   description?: string;
 
-  @Prop({ type: String, enum: ProductCategory, required: true })
-  category: ProductCategory;
+  @Prop({ required: true })
+  category: string; // endi enum emas, erkin string
 
   @Prop({ default: true })
   isActive: boolean;
 
   @Prop({ required: true })
-  createdBy: number; // chatId of seller/manager who created it
+  createdBy: number;
 }
 
 export const ProductSchema = SchemaFactory.createForClass(Product);

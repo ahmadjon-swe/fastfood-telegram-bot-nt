@@ -178,15 +178,15 @@ export class CartService implements OnModuleInit {
     const itemLines = cart.items
       .map(
         (item, i) =>
-          `${i + 1}. ${item.name} × ${item.quantity} = $${(item.price * item.quantity).toFixed(2)}`,
+          `${i + 1}. ${item.name} × ${item.quantity} = ${(item.price * item.quantity).toFixed(2)} UZS`,
       )
       .join('\n');
 
     const cartText =
       `🛒 *Your Cart*\n\n${itemLines}\n\n` +
       `─────────────────\n` +
-      `💰 *Total: $${cart.total.toFixed(2)}*\n` +
-      `💳 Your balance: $${user.balance.toFixed(2)}`;
+      `💰 *Total: ${cart.total.toFixed(2)} UZS*\n` +
+      `💳 Your balance: ${user.balance.toFixed(2)} UZS`;
 
     // Build item control buttons
     const itemButtons = cart.items.map((item) => [

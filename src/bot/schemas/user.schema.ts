@@ -1,5 +1,6 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
-import { Document } from 'mongoose';
+import { Document, Types } from 'mongoose';
+import { Transform } from 'stream';
 
 export type UserDocument = User & Document;
 
@@ -18,8 +19,8 @@ export enum RegistrationStep {
 
 @Schema({ timestamps: true })
 export class User {
-  @Prop({ required: true, unique: true })
-  chatId: number;
+  @Prop({ required: true, unique: true, transform: toString})
+  chatId: string;
 
   @Prop({ required: true })
   firstName: string;
